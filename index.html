@@ -9,6 +9,15 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <style>
+    /* Utility to stack elements in the same grid spot */
+    .grid-area-\[1\/1\] {
+      grid-area: 1 / 1;
+    }
+
+    .word-v-slide {
+      display: inline-block;
+    }
+
     .glass {
       background: rgba(255, 255, 255, .4);
       backdrop-filter: blur(18px) saturate(1.5);
@@ -128,7 +137,20 @@
     <div class="absolute inset-0 bg-black/40"></div>
     <div class="relative text-center text-white px-4">
       <h1 class="text-4xl md:text-6xl font-bold mb-4">Welcome to Balaji Group of Hotels</h1>
-      <p class="text-xl md:text-2xl font-light">Experience Divine Comfort</p>
+      <div class="text-xl md:text-2xl font-light flex flex-col items-center justify-center">
+        <div class="flex items-center justify-center gap-x-2 leading-none">
+          <span class="whitespace-nowrap">Experience Divine</span>
+          <span class="inline-grid grid-cols-1 items-center h-[1.2em] overflow-hidden text-orange-600 font-bold">
+            <span class="word-v-slide grid-area-[1/1] opacity-100 transition-all duration-500">Comfort</span>
+            <span
+              class="word-v-slide grid-area-[1/1] opacity-0 translate-y-full transition-all duration-500">Food</span>
+            <span
+              class="word-v-slide grid-area-[1/1] opacity-0 translate-y-full transition-all duration-500">Sleep</span>
+            <span
+              class="word-v-slide grid-area-[1/1] opacity-0 translate-y-full transition-all duration-500">Blessings</span>
+          </span>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -469,6 +491,41 @@
     };
     window.addEventListener("scroll", handleScroll);
 
+    const slides = document.querySelectorAll('.word-v-slide');
+    let currentIndex = 0;
+
+    function rotateWords() {
+      const currentWord = slides[currentIndex];
+      const nextIndex = (currentIndex + 1) % slides.length;
+      const nextWord = slides[nextIndex];
+
+      // 1. Slide the current word UP and out
+      currentWord.classList.replace('opacity-100', 'opacity-0');
+      currentWord.classList.add('-translate-y-full');
+      currentWord.classList.remove('translate-y-0');
+
+      // 2. Prepare the next word (make sure it's below the view first)
+      nextWord.classList.remove('invisible'); // safety check
+
+      // 3. Slide the next word UP into view
+      nextWord.classList.replace('opacity-0', 'opacity-100');
+      nextWord.classList.remove('translate-y-full');
+      nextWord.classList.add('translate-y-0');
+
+      // 4. Cleanup: Reset the word that just left to the bottom after animation
+      setTimeout(() => {
+        currentWord.style.transition = 'none';
+        currentWord.classList.remove('-translate-y-full');
+        currentWord.classList.add('translate-y-full');
+        // Force a reflow before putting transition back
+        currentWord.offsetHeight;
+        currentWord.style.transition = '';
+      }, 500);
+
+      currentIndex = nextIndex;
+    }
+
+    setInterval(rotateWords, 3000);
   </script>
 </body>
 
