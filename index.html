@@ -16,9 +16,8 @@
   <meta name="twitter:description" content="Find best hotel in bageswar dham" />
   <meta name="twitter:image" content="https://balajigroupofhotels.com/assets/share.avif" />
   <title>Balaji group of Hotels | Bageshwar Dham</title>
-  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="/assets/tailwindcss.js"></script>
+  <link rel="stylesheet" href="assets/swiper-bundle.min.css" />
   <style>
     /* Utility to stack elements in the same grid spot */
     .grid-area-\[1\/1\] {
@@ -331,7 +330,20 @@
             Message</button>
         </form>
       </div>
-      <div id="map"></div>
+      <div>
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d226.296549890177!2d79.8030514847751!3d24.838399568922927!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3982ed4c865ccf03%3A0xaca63183ba33e8a5!2sBAGESHWAR%20DHAM%20FAMILY%20RESTAURANT%20AND%20RAIN%20BASERA!5e0!3m2!1sen!2sin!4v1770458197821!5m2!1sen!2sin"
+          style="border:0;" allowfullscreen="" loading="lazy" class="rounded-xl md:w-150 md:h-110"
+          referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <div class="p-2">BAGESHWAR DHAM FAMILY RESTAURANT AND RAIN BASERA (near Office Number 2, Gada)</div>
+      </div>
+      <div>
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3620.7217389938405!2d79.80189767537021!3d24.8391878779432!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjTCsDUwJzIxLjEiTiA3OcKwNDgnMTYuMSJF!5e0!3m2!1sen!2sin!4v1770458354906!5m2!1sen!2sin"
+          style="border:0;" allowfullscreen="" loading="lazy" class="rounded-xl md:w-150 md:h-110"
+          referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <div class="p-2">BAGESHWAR DIVINE STAY (Beside New Ram Darbar, Gada)</div>
+      </div>
     </div>
   </section>
 
@@ -347,19 +359,9 @@
     <p>Site made by <a href="https://wa.me/916200493481" class="underline text-blue-500">Rishav Bhardwaj</a></p>
   </footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="assets/swiper-bundle.min.js"></script>
 
   <script>
-    // Leaflet Map Initialization (Bageshwar Dham approx coordinates)
-    const map = L.map('map').setView([24.8517, 79.9248], 15);
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '© OpenStreetMap contributors'
-    }).addTo(map);
-    L.marker([24.8517, 79.9248]).addTo(map)
-      .bindPopup('Balaji Hotel<br>Near Bageshwar Dham Temple.')
-      .openPopup();
-
     // Disqus Integration
     // var disqus_config = function () {
     //   this.page.url = window.location.href;
