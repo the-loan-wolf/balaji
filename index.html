@@ -63,12 +63,6 @@
       will-change: opacity;
     }
 
-    #map {
-      height: 400px;
-      width: 100%;
-      border-radius: 1rem;
-    }
-
     /* Focus styling for the active (centered) slide */
     .swiper-slide-active img {
       transform: scale(1) !important;
@@ -83,14 +77,24 @@
       object-fit: cover;
     }
 
-    /* Customizing Swiper Arrows to look like the image */
-    < !-- .swiper-button-next:after,
-    -->< !-- .swiper-button-prev:after {
-      -->< !-- font-weight: bold;
-      -->< !--
-    }
+    /* Mobile Adjustments (Screens smaller than 768px) */
+    @media (max-width: 768px) {
+      .mainCarousel .swiper-slide img {
+        height: auto;
+        /* Let the height adjust naturally */
+        max-height: 50vh;
+        /* Optional: prevents the image from being too tall */
+        object-fit: contain;
+      }
 
-    -->
+      /* Customizing Swiper Arrows to look like the image */
+      < !-- .swiper-button-next:after,
+      -->< !-- .swiper-button-prev:after {
+        -->< !-- font-weight: bold;
+        -->< !--
+      }
+
+      -->
   </style>
 </head>
 
