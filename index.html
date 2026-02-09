@@ -18,7 +18,35 @@
   <title>Balaji group of Hotels | Bageshwar Dham</title>
   <script src="/assets/tailwindcss.js"></script>
   <link rel="stylesheet" href="assets/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <style>
+    .map-card {
+      max-width: 800px;
+      margin: 20px auto;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      font-family: sans-serif;
+      border: 1px solid #eee;
+    }
+
+    #map {
+      height: 450px;
+      width: 100%;
+    }
+
+    .map-footer {
+      padding: 15px;
+      background: white;
+      text-align: center;
+    }
+
+    /* Custom Popup Styling */
+    .leaflet-popup-content-wrapper {
+      border-radius: 8px;
+      padding: 5px;
+    }
+
     /* Utility to stack elements in the same grid spot */
     .grid-area-\[1\/1\] {
       grid-area: 1 / 1;
@@ -144,10 +172,8 @@
 
   <section id="hero"
     class="relative h-screen w-full flex items-center justify-center overflow-hidden bg-cover bg-center bg-no-repeat"
-    style="background-image: url('assets/lord-venkateswara.jpg');>
+    style="background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('assets/lord-venkateswara.jpg');">
 
-    <div class=" absolute inset-0 bg-black/40">
-    </div>
     <div class="relative text-center text-white px-4">
       <h1 class="text-4xl md:text-6xl font-bold mb-4">Welcome to Balaji Group of Hotels</h1>
       <div class="text-xl md:text-2xl font-light flex flex-col items-center justify-center">
@@ -298,26 +324,6 @@
       <div>
         <h3 class="text-4xl font-bold mb-6">Get in Touch</h3>
         <p class="text-gray-600 mb-8">Have questions? Reach out to us directly or fill the form.</p>
-        <div class="space-y-4 mb-8">
-          <a href="tel:+919304414431"
-            class="flex items-center space-x-4 text-2xl font-bold text-orange-600 hover:underline">
-            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
-              <path
-                d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z">
-              </path>
-            </svg>
-            <span>+91 93044 14431</span>
-          </a>
-          <a href="tel:+919955528739"
-            class="flex items-center space-x-4 text-2xl font-bold text-orange-600 hover:underline">
-            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
-              <path
-                d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z">
-              </path>
-            </svg>
-            <span>+91 99555 28739</span>
-          </a>
-        </div>
         <form class="space-y-4" action="https://formspree.io/f/mayrlqyw" method="post">
           <input name="name" type="text" placeholder="Your Name"
             class="w-full p-4 border rounded-xl focus:ring-2 focus:ring-orange-500 outline-none">
@@ -330,19 +336,87 @@
             Message</button>
         </form>
       </div>
-      <div>
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d226.296549890177!2d79.8030514847751!3d24.838399568922927!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3982ed4c865ccf03%3A0xaca63183ba33e8a5!2sBAGESHWAR%20DHAM%20FAMILY%20RESTAURANT%20AND%20RAIN%20BASERA!5e0!3m2!1sen!2sin!4v1770458197821!5m2!1sen!2sin"
-          style="border:0;" allowfullscreen="" loading="lazy" class="rounded-xl md:w-150 md:h-110"
-          referrerpolicy="no-referrer-when-downgrade"></iframe>
-        <div class="p-2">BAGESHWAR DHAM FAMILY RESTAURANT AND RAIN BASERA (near Office Number 2, Gada)</div>
+      <div class="w-full">
+        <div class="mb-10">
+          <h2 class="text-4xl md:text-5xl font-light uppercase tracking-wide mb-6 ">
+            Contact With Us
+          </h2>
+          <p class="text-lg leading-relaxed font-sans">
+            We're here to make your stay exceptional. Whether you have questions about your reservation, need
+            information on our amenities, or want to provide feedback on your experience, we're just a call or email
+            away. We look forward to welcoming you!
+          </p>
+        </div>
+
+        <div class="space-y-8">
+
+          <div class="flex items-center gap-6 group">
+            <div class="p-5 rounded-full border transition-colors border-orange-600">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-orange-600" fill="currentColor"
+                viewBox="0 0 24 24">
+                <path
+                  d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z">
+              </svg>
+            </div>
+            <div>
+              <div class="">
+                <a href="tel:+919304414431"
+                  class="flex items-center space-x-4 text-2xl font-bold text-orange-600 hover:underline">
+                  <span>+91 93044 14431</span>
+                </a>
+                <a href="tel:+919955528739"
+                  class="flex items-center space-x-4 text-2xl font-bold text-orange-600 hover:underline">
+                  <span>+91 99555 28739</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <hr class="border-black">
+
+          <div class="flex items-center gap-6 group">
+            <div class="p-5 rounded-full border transition-colors border-orange-600">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-orange-600" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                  d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              </svg>
+            </div>
+            <div>
+              <p class="text-sm font-sans mb-1 text-orange-600">Sent Email</p>
+              <p class="text-2xl tracking-wide text-orange-600">balajihotels@gmail.com</p>
+            </div>
+          </div>
+
+          <hr class="border-black">
+
+          <div class="flex items-center gap-6 group">
+            <div class="p-5 rounded-full border transition-colors border-orange-600">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-orange-600" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                  d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                  d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+            </div>
+            <div>
+              <p class="text-sm font-sans mb-1 text-orange-600">Our Locations</p>
+              <p class="text-2xl leading-snug tracking-wide text-orange-600">
+                Bageshwar Dham,<br>
+                MP, PIN 471001
+              </p>
+            </div>
+          </div>
+
+        </div>
       </div>
-      <div>
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3620.7217389938405!2d79.80189767537021!3d24.8391878779432!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjTCsDUwJzIxLjEiTiA3OcKwNDgnMTYuMSJF!5e0!3m2!1sen!2sin!4v1770458354906!5m2!1sen!2sin"
-          style="border:0;" allowfullscreen="" loading="lazy" class="rounded-xl md:w-150 md:h-110"
-          referrerpolicy="no-referrer-when-downgrade"></iframe>
-        <div class="p-2">BAGESHWAR DIVINE STAY (Beside New Ram Darbar, Gada)</div>
+    </div>
+    <div class="map-card">
+      <div id="map"></div>
+      <div class="map-footer">
+        <strong>BALAJI HOTELS</strong><br>
+        <small>CONTACT NUMBER - 9304414431, 9955528739</small>
       </div>
     </div>
   </section>
@@ -359,8 +433,47 @@
     <p>Site made by <a href="https://wa.me/916200493481" class="underline text-blue-500">Rishav Bhardwaj</a></p>
   </footer>
 
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script src="assets/swiper-bundle.min.js"></script>
+  <script>
+    const slides = document.querySelectorAll('.word-v-slide');
+    let currentIndex = 0;
 
+    function rotateWords() {
+      const currentWord = slides[currentIndex];
+      const nextIndex = (currentIndex + 1) % slides.length;
+      const nextWord = slides[nextIndex];
+
+      // 1. Slide the current word UP and out
+      currentWord.classList.replace('opacity-100', 'opacity-0');
+      currentWord.classList.add('-translate-y-full');
+      currentWord.classList.remove('translate-y-0');
+
+      // 2. Prepare the next word (make sure it's below the view first)
+      nextWord.classList.remove('invisible'); // safety check
+
+      // 3. Slide the next word UP into view
+      nextWord.classList.replace('opacity-0', 'opacity-100');
+      nextWord.classList.remove('translate-y-full');
+      nextWord.classList.add('translate-y-0');
+
+      // 4. Cleanup: Reset the word that just left to the bottom after animation
+      setTimeout(() => {
+        currentWord.style.transition = 'none';
+        currentWord.classList.remove('-translate-y-full');
+        currentWord.classList.add('translate-y-full');
+        // Force a reflow before putting transition back
+        currentWord.offsetHeight;
+        currentWord.style.transition = '';
+      }, 500);
+
+      currentIndex = nextIndex;
+    }
+
+    // Initial call so it doesn't wait 1.7s to start
+    rotateWords();
+    setInterval(rotateWords, 1700);
+  </script>
   <script>
     // Disqus Integration
     // var disqus_config = function () {
@@ -380,7 +493,8 @@
     //   "Executive Lounge <span class='text-gray-400 font-normal ml-2'>350 sq. ft.</span>",
     //   "Luxury Suite <span class='text-gray-400 font-normal ml-2'>350 sq. ft.</span>"
     // ];
-
+  </script>
+  <script>
     const captions = [
       "",
       "",
@@ -424,7 +538,8 @@
       },
       pagination: {el: '.swiper-pagination', clickable: true},
     });
-
+  </script>
+  <script>
     const element = document.getElementById("nav-island");
     const overlay = document.getElementById("nav-overlay");
     let indexForVisibleSection = 0;
@@ -486,7 +601,8 @@
 
     // Initialize dimensions on load
     window.addEventListener("load", updateNavigation);
-
+  </script>
+  <script>
     let desktopHeader = document.getElementById('desktop-header');
     let desktopNav = document.getElementById('desktop-nav');
     let desktopLogo = document.getElementById('desktop-logo');
@@ -506,42 +622,33 @@
       }
     };
     window.addEventListener("scroll", handleScroll);
+  </script>
+  <script>
+    // Coordinates for Gada area / Bageshwar Dham vicinity
+    const divineStay = [24.8587, 79.9255]; // Divine Stay
+    const rainBasera = [24.8967, 79.5934]; // Restaurant & Rain Basera
 
-    const slides = document.querySelectorAll('.word-v-slide');
-    let currentIndex = 0;
+    // Initialize the map
+    var map = L.map('map');
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+      attribution: '&copy; OpenStreetMap'
+    }).addTo(map);
 
-    function rotateWords() {
-      const currentWord = slides[currentIndex];
-      const nextIndex = (currentIndex + 1) % slides.length;
-      const nextWord = slides[nextIndex];
+    // 4. Create markers with custom labels
+    const markerStay = L.marker(divineStay).bindPopup("<b>Bageshwar Divine Stay</b><br>Beside New Ram Darbar");
+    const markerFood = L.marker(rainBasera).bindPopup("<b>Bageshwar Dham Family Restaurant & rain basera</b><br>Near Office 2");
 
-      // 1. Slide the current word UP and out
-      currentWord.classList.replace('opacity-100', 'opacity-0');
-      currentWord.classList.add('-translate-y-full');
-      currentWord.classList.remove('translate-y-0');
+    // 5. Group them together and add to map
+    const poiGroup = L.featureGroup([markerStay, markerFood]).addTo(map);
 
-      // 2. Prepare the next word (make sure it's below the view first)
-      nextWord.classList.remove('invisible'); // safety check
+    // 6. fits both pins in view
+    map.fitBounds(poiGroup.getBounds(), {padding: [50, 50]});
 
-      // 3. Slide the next word UP into view
-      nextWord.classList.replace('opacity-0', 'opacity-100');
-      nextWord.classList.remove('translate-y-full');
-      nextWord.classList.add('translate-y-0');
-
-      // 4. Cleanup: Reset the word that just left to the bottom after animation
-      setTimeout(() => {
-        currentWord.style.transition = 'none';
-        currentWord.classList.remove('-translate-y-full');
-        currentWord.classList.add('translate-y-full');
-        // Force a reflow before putting transition back
-        currentWord.offsetHeight;
-        currentWord.style.transition = '';
-      }, 500);
-
-      currentIndex = nextIndex;
-    }
-
-    setInterval(rotateWords, 3000);
+    setTimeout(() => {
+      map.invalidateSize();
+      markerStay.openPopup();
+      markerFood.openPopup();
+    }, 500);
   </script>
 </body>
 
