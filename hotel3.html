@@ -106,6 +106,8 @@
         font-weight: bold;
 
       }
+
+      -->
   </style>
 </head>
 
@@ -187,7 +189,7 @@
 
   <section id="hero"
     class="relative h-screen w-full flex items-center justify-center overflow-hidden bg-cover bg-center bg-no-repeat"
-    style="background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('assets/lord-venkateswara.jpg');">
+    style="background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('assets/yglpbhshicso.webp');">
 
     <div class="relative text-center text-white px-4">
       <h1 id="hero-title"
@@ -242,6 +244,18 @@
                 class="rounded-[2rem] shadow-lg transition-all duration-500 scale-95 opacity-50" alt="Room 3">
             </a>
           </div>
+          <!-- <div class="swiper-slide px-2"> -->
+          <!--   <a href=""> -->
+          <!--     <img src="assets/room4.jpeg" -->
+          <!--       class="rounded-[2rem] shadow-lg transition-all duration-500 scale-95 opacity-50" alt="Room 4"> -->
+          <!--   </a> -->
+          <!-- </div> -->
+          <!-- <div class="swiper-slide px-2"> -->
+          <!--   <a href=""> -->
+          <!--     <img src="assets/room51.jpeg" -->
+          <!--       class="rounded-[2rem] shadow-lg transition-all duration-500 scale-95 opacity-50" alt="Room 4"> -->
+          <!--   </a> -->
+          <!-- </div> -->
         </div>
 
         <div
@@ -428,13 +442,13 @@
         </div>
       </div>
     </div>
-    <!-- <div class="map-card"> -->
-    <!--   <div id="map"></div> -->
-    <!--   <div class="map-footer"> -->
-    <!--     <strong>BALAJI HOTELS</strong><br> -->
-    <!--     <small>CONTACT NUMBER - 9304414431, 9955528739</small> -->
-    <!--   </div> -->
-    <!-- </div> -->
+    <div class="map-card">
+      <div id="map"></div>
+      <div class="map-footer">
+        <strong>BALAJI HOTELS</strong><br>
+        <small>CONTACT NUMBER - 9304414431, 9955528739</small>
+      </div>
+    </div>
   </section>
 
   <!-- <section class="py-12 bg-gray-100"> -->
@@ -449,7 +463,7 @@
     <p>Site made by <a href="https://wa.me/916200493481" class="underline text-blue-500">Rishav Bhardwaj</a></p>
   </footer>
 
-  <!-- <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script> -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script src="assets/swiper-bundle.min.js"></script>
   <script>
     const slides = document.querySelectorAll('.word-v-slide');
@@ -633,33 +647,33 @@
     };
     window.addEventListener("scroll", handleScroll);
   </script>
-  <!-- <script> -->
-  <!--   // Coordinates for Gada area / Bageshwar Dham vicinity -->
-  <!--   const divineStay = [24.8587, 79.9255]; // Divine Stay -->
-  <!--   const rainBasera = [24.8967, 79.5934]; // Restaurant & Rain Basera -->
-  <!---->
-  <!--   // Initialize the map -->
-  <!--   var map = L.map('map'); -->
-  <!--   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', { -->
-  <!--     attribution: '&copy; OpenStreetMap' -->
-  <!--   }).addTo(map); -->
-  <!---->
-  <!--   // 4. Create markers with custom labels -->
-  <!--   const markerStay = L.marker(divineStay).bindPopup("<b>Bageshwar Divine Stay</b><br>Beside New Ram Darbar"); -->
-  <!--   const markerFood = L.marker(rainBasera).bindPopup("<b>Bageshwar Dham Family Restaurant & rain basera</b><br>Near Office 2"); -->
-  <!---->
-  <!--   // 5. Group them together and add to map -->
-  <!--   const poiGroup = L.featureGroup([markerStay, markerFood]).addTo(map); -->
-  <!---->
-  <!--   // 6. fits both pins in view -->
-  <!--   map.fitBounds(poiGroup.getBounds(), {padding: [50, 50]}); -->
-  <!---->
-  <!--   setTimeout(() => { -->
-  <!--     map.invalidateSize(); -->
-  <!--     markerStay.openPopup(); -->
-  <!--     markerFood.openPopup(); -->
-  <!--   }, 500); -->
-  <!-- </script> -->
+  <script>
+    // Coordinates for Gada area / Bageshwar Dham vicinity
+    const divineStay = [24.8587, 79.9255]; // Divine Stay
+    const rainBasera = [24.8967, 79.5934]; // Restaurant & Rain Basera
+
+    // Initialize the map
+    var map = L.map('map');
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+      attribution: '&copy; OpenStreetMap'
+    }).addTo(map);
+
+    // 4. Create markers with custom labels
+    const markerStay = L.marker(divineStay).bindPopup("<b>Bageshwar Divine Stay</b><br>Beside New Ram Darbar");
+    const markerFood = L.marker(rainBasera).bindPopup("<b>Bageshwar Dham Family Restaurant & rain basera</b><br>Near Office 2");
+
+    // 5. Group them together and add to map
+    const poiGroup = L.featureGroup([markerStay, markerFood]).addTo(map);
+
+    // 6. fits both pins in view
+    map.fitBounds(poiGroup.getBounds(), {padding: [50, 50]});
+
+    setTimeout(() => {
+      map.invalidateSize();
+      markerStay.openPopup();
+      markerFood.openPopup();
+    }, 500);
+  </script>
   <script>document.addEventListener("DOMContentLoaded", () => {
       const title = document.getElementById("hero-title");
       const subtitle = document.getElementById("hero-subtitle");
